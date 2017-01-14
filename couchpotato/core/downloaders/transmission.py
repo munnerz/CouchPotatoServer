@@ -216,7 +216,7 @@ class TransmissionRPC(object):
         headers = {'x-transmission-session-id': str(self.session_id)}
         request = urllib2.Request(self.url, json.dumps(ojson).encode('utf-8'), headers)
         try:
-            open_request = urllib2.urlopen(request)
+            open_request = urllib2.urlopen(request, timeout=10)
             response = json.loads(open_request.read())
             log.debug('request: %s', json.dumps(ojson))
             log.debug('response: %s', json.dumps(response))
